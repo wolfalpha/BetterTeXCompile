@@ -8,4 +8,4 @@ Usage:
 
 Simply run the script with setting the ".tex" file as argument, like:
 "$./bc.sh TeXfile.tex".
-You also may want to add this script to your $PATH. ;)
+You also may want to add this script to your $PATH. ;-)
