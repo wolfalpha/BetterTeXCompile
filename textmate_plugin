@@ -85,13 +85,40 @@ compile(){
 	fi
 }
 
+pkgcheck(){
+	echo "Checking for installed packages ..."
+	texpath=`which pdflatex`
+	if [ ! -n "$texpath" ]
+		then
+		echo "No TeX distribution was found! Please install and/or add pdflatex to your PATH!"
+		echo "==> Fatal error occurred, no output PDF file produced!"
+		exit 1
+	fi	
+	bibtexpath=`which bibtex`
+	if [ ! -n "$bibtexpath" ]
+		then
+		echo "No BibTeX was found! Please install and/or add bibtex to your PATH!"
+		echo "==> Fatal error occurred, no output PDF file produced!"
+		exit 1
+	fi
+	sedpath=`which sed`
+	if [ ! -n "$sedpath" ]
+		then
+		echo "No Stream Editor was found! Please install and/or add sed to your PATH!"
+		echo "==> Fatal error occurred, no output PDF file produced!"
+		exit 1
+	fi
+}
+
 if test -e $auxfile
 	then
+	pkgcheck
 	echo "removing $auxfile ..."
 	rm $auxfile
 	compile
 	exit 0
 else
+	pkgcheck
 	compile
 	exit 0
 fi
